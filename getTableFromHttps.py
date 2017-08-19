@@ -327,14 +327,18 @@ def find_missing_meets(result_tuple1, result_tuple2):
     missing_meets_raw = create_set(result_tuple2).difference(create_set(result_tuple1))
     result_string = "missing meets: " + "\n"
     for i in missing_meets_raw:
-        year, month, day = jd_to_date(float(i[0]))
-        result_string += "R3 = "+ str(i[1]) + " on " + str(year) + "." + str(month) + "." + str(int(day)) + "; "
+        if str(i[1]) not in ("95500","95501","95502"): #this is to filter out Malaysian tracks
+            year, month, day = jd_to_date(float(i[0]))
+            result_string += "R3 = "+ str(i[1]) + " on " + str(year) + "." + str(month) + "." + str(int(day)) + "; "
     if result_string.strip() == "missing meets:":
         extra_meets_raw = create_set(result_tuple1).difference(create_set(result_tuple2))
         result_string = "extra meets in RTMH report but not in rfile: " + "\n"
         for i in extra_meets_raw:
-            year, month, day = jd_to_date(float(i[0]))
-            result_string += "R3 = "+ str(i[1]) + " on " + str(year) + "." + str(month) + "." + str(int(day)) + "; "
+            if str(i[1]) not in ("95500","95501","95502"):
+                year, month, day = jd_to_date(float(i[0]))
+                result_string += "R3 = "+ str(i[1]) + " on " + str(year) + "." + str(month) + "." + str(int(day)) + "; "
+    if result_string.strip() == "extra meets in RTMH report but not in rfile:": #will still be NONE if the differences were due to MY tracks
+        return "None"
     return result_string[:-2]        
     
 def create_set(the_tuple):    
