@@ -63,13 +63,15 @@ raw_dict = {"brjp0042": [["BR_WIND_SPEED", None], ["BR_WAVE_AMP", None], ["BR_RU
                       "gphk": [["JOCKEY", None], ["TRACK_COND", None]],        
                       "gphk0185": [["JOCKEY", None], ["TRACK_COND", None]], 
                       "gpkr": [["TRACK_COND", None], ["JOCKEY", None],],  #["WEIGHT_CARRIED", None]
+                      "gpkr0121": [["TRACK_COND", None], ["JOCKEY", None],],  #["WEIGHT_CARRIED", None]
                       "gpuk": [["JOCKEY", None], ["TRACK_COND", None], ["SST", None]],           
                       "gpjpc": [["JOCKEY", None], ["TRACK_COND", None], ["RUNNER_WEIGHT", None], ["SST", None]], 
                       #"gpza": [["JOCKEY", None], ["TRACK_COND", None], ["TRACK_SURFACE", None], ["JOCKEY_ALLOWANCE", None]], 
                       "gpza0142": [["JOCKEY", None], ["TRACK_COND",  None], ["TRACK_SURFACE", None], ["JOCKEY_ALLOWANCE", None]], 
                       "pykr": [["JOCKEY", None], ["HUMIDITY", None]], #["WEIGHT_CARRIED", None], 
                       "pykr0031": [["JOCKEY", None], ["HUMIDITY", None]], #["WEIGHT_CARRIED", None], 
-                      "gpsg": [["JOCKEY", None], ["TRACK_COND", None]]
+                      "gpsg": [["JOCKEY", None], ["TRACK_COND", None]],
+                      "hnit0017": [["JOCKEY", None], ["TRACK_COND", None]]
                       }
 
 marketAndVariables = OrderedDict(sorted(raw_dict.items(), key=lambda t: t[0]))
@@ -107,13 +109,15 @@ dpdb_log_in = {"brjp0042": 'BRJP_CLIENT/brjp2015@dpdb',
                "gphk": 'GPHK_CLIENT/gphk2014@dpdb',        
                "gphk0185": 'GPHK_CLIENT/gphk2014@dpdb', 
                "gpkr": 'GPKR_CLIENT/gpkr2014@dpdb',
+               "gpkr0121": 'GPKR_CLIENT/gpkr2014@dpdb',
                "gpuk": 'UKG_CLIENT2/nerkez@dpdb',           
                "gpjpc": 'GPJP_CLIENT2/gpjp2015@dpdb', 
                "gpza": 'ZAG_CLIENT/gpza2013@dpdb', 
                "gpza0142": 'ZAG_CLIENT/gpza2013@dpdb',
                "pykr": 'PYKR_CLIENT/pykr20150401@dpdb', 
                "pykr0031": 'PYKR_CLIENT/pykr20150401@dpdb',
-               "gpsg": 'GPSGMY_CLIENT/gpsgmy2014@dpdb'               
+               "gpsg": 'GPSGMY_CLIENT/gpsgmy2014@dpdb',
+               "hnit0017": 'HNIT_CLIENT/hnit2017@dpdb', 
                }
 
 dpdb_base_t = {"brjp0042": 'rfile_base',
@@ -124,13 +128,15 @@ dpdb_base_t = {"brjp0042": 'rfile_base',
                "gphk": 'rfile_base_v163',        
                "gphk0185": 'rfile_base_2016', 
                "gpkr": 'rfile_base',
+               "gpkr0121": 'rfile_base_201611',
                "gpuk": 'ukg_client2.rfile_form@DPDB',           
                "gpjpc": 'rfile_combined', 
                "gpza": 'rfile_table', 
                "gpza0142": 'rfile_table',
                "pykr": 'rfile_base', 
                "pykr0031": 'rfile_base',
-               "gpsg": 'rfile_base'               
+               "gpsg": 'rfile_base',
+               "hnit0017": 'ec_rfile_base_0005'
                }
 
 def generate_urls(marketAndVariables_dict):
