@@ -20,13 +20,18 @@ DEBUG = 1
 TEST = 0 #change this to 1 to run test for an earlier date
 
 days_to_subtract = 2
+days_to_subtract_3_day = 3
 further_subtract = 14
+
 todaysdate = datetime.today() - timedelta(days=days_to_subtract) # today - 2
+todaysdate_3_day = datetime.today() - timedelta(days=days_to_subtract_3_day) # today - 3
 two_weeks_back = datetime.today() - timedelta(days=days_to_subtract+further_subtract) # today - 2 - 14
+
 todaysdate_formated = todaysdate.strftime("%d-%b-%Y")
+todaysdate_3_day_formated = todaysdate_3_day.strftime("%d-%b-%Y")
 two_weeks_back_formated = two_weeks_back.strftime("%d-%b-%Y")
 todaysdate_formated_2 = todaysdate.strftime("%d/%m/%Y")
-
+todaysdate_3_day_formated_2 = todaysdate_3_day.strftime("%d/%m/%Y")
 
 #================================TEST======================================
 if TEST:
@@ -140,14 +145,17 @@ dpdb_base_t = {"brjp0042": 'rfile_base',
                }
 
 def generate_urls(marketAndVariables_dict):
+    global date_prefix
     for key in marketAndVariables_dict:
     	#print key
         market_prefix = "market=" + key
+        if key == 'hnit0017':
+            date_prefix = "&date=" + todaysdate_3_day_formated
         for value in marketAndVariables_dict[key]:
             variable_prefix = "&changeType=" + value[0]
             #print(value[1])
             if value[0] in raceLevelVariables:
-                value[1] = url_prefix_race + market_prefix + date_prefix + variable_prefix + "&debug=1"
+                value[1] = url_prefix_race + market_prefix + date_prefix + variable_prefix + "&debug=1"              
             else:
                 value[1] = url_prefix_starter + market_prefix + date_prefix + variable_prefix + "&debug=1"       
     return marketAndVariables_dict
@@ -434,7 +442,7 @@ def generate_output_html(input_list):
         text-align: left;
         padding: 8px;
     }
-    h3 {
+    h3, p {
     	font-family: arial, sans-serif;
     }
     tr:nth-child(even) {
@@ -470,6 +478,10 @@ def generate_output_html(input_list):
         s += '\n'
     s += """
     </table>
+    <p>*hnit0017 has an extra day of delay - """
+
+    s += todaysdate_3_day_formated_2
+    s += """ was checked for this market.</p>
     
     </body>
     </html>
